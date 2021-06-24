@@ -3,8 +3,8 @@ library(vegan)
 ################
 # load data ####
 ################
-setwd("~/Dropbox/manuscripts/2008_Euphrasia_genome_size/repo/")
-#setwd("~/github_repos/xyz/")
+
+setwd("~/git_repos/EuphrasiaGS//")
 
 dat <- read.table("data/COMPARATIVE_ANALYSIS_COUNTS1813_25k.csv", header=T)
 head(dat, n=20)
@@ -301,6 +301,15 @@ abline(h=0.05)
 #  significant. Neither works with 100, 200, or 500 clusters.
 
 
+######################
+# Repeat overview ####
+######################
 
+dim(datIndsNorm)
+dIN100 <- datIndsNorm[1:101,2:31]
+dIN1001 <- t(apply(dIN100[-64,], 1, function(x) x/max(x)))
 
+image(dIN1001)
+library(gplots)
+heatmap.2(dIN1001, trace="none", dendrogram="col", Rowv=F)
 
